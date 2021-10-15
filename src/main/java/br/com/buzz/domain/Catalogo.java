@@ -19,13 +19,18 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
+@Data
 public class Catalogo implements Serializable {
 	
 	private static final long serialVersionUID = 4694567246728518464L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 	
 	@NotNull
@@ -55,8 +60,6 @@ public class Catalogo implements Serializable {
 	@NotNull
 	private Integer quantidadeProdutos;
 	
-	public Catalogo() {}
-
 	public Catalogo(Long id, @NotNull @Size(min = 4, message = "O nome do catálogo precisa ter no mínimo 4 caracteres") String nome,
 			@NotNull Image foto, @NotNull @NotEmpty String horario, @NotNull Conta conta,
 			@NotNull @Size(min = 4, message = "A descrição do catálogo precisa ter no mínimo 4 caracteres") String descricao) {
@@ -70,68 +73,5 @@ public class Catalogo implements Serializable {
 		this.descricao = descricao;
 		this.quantidadeProdutos = 0;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Image getFoto() {
-		return foto;
-	}
-
-	public void setFoto(Image foto) {
-		this.foto = foto;
-	}
-
-	public String getHorario() {
-		return horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public Conta getConta() {
-		return conta;
-	}
-
-	public void setConta(Conta conta) {
-		this.conta = conta;
-	}
-
-	public Integer getQuantidadeProdutos() {
-		return quantidadeProdutos;
-	}
-
-	public void setQuantidadeProdutos(Integer quantidadeProdutos) {
-		this.quantidadeProdutos = quantidadeProdutos;
-	}
+	
 }

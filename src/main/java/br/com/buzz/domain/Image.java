@@ -11,13 +11,18 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
+@Data
 public class Image implements Serializable {
 	
 	private static final long serialVersionUID = 4455018971092986200L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 	
 	@OneToOne
@@ -31,28 +36,10 @@ public class Image implements Serializable {
 	@NotNull
 	private String url;
 	
-	public Image() {}
-
 	public Image(Long id, String url) {
 		super();
 		this.id = id;
 		this.url = url;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 }
